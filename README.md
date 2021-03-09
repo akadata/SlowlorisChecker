@@ -4,23 +4,25 @@ SlowlorisChecker
 This is a simple script to check if some server could be affected by Slowloris attack (Not executing the attack itself)
 
 =======================
+According to the origional author - translated to English
 
- Ya que el script de slowloris de nmap no funciona                            
- he dedidido hacer la misma prueba de una forma ad hoc pero se basa en la     
- misma mecánica:                                                              
-                                                                              
- Abrimos dos conexiones al mismo tiempo al servidor:                          
- 1 - Conexión de control: Esta conexión no enviará nada a parte de un par de  
- cabeceras y esperará a que de timeout el servidor.                           
- 2 - Conexión de retraso: Esta conexión se crea a la misma vez que la primera,
-     envia las mismas cabeceras, espera 10 segundos y envia una cabecera más  
-     al servidor. Espera a que de timeout el servidor.                        
-                                                                              
- Si hay una diferencia de tiempos entre el timeout 1 y el 2 de 10 segundos o  
- más, entonces podemos concluir que el servidor es vulnerable a este ataque,  
- ya que una conexión podrá mantenerse ocupada en el servidor mientras se      
- envien cabeceras cada 10 segundos (tiempo configurable).                     
+Since nmap's slowloris script doesn't work 
 
-Explicación completa del método utilizado tomada del enlace siguiente: 
- 
+ I have decided to do the same test in an ad hoc way but it is based on the
+ same mechanics:
+                                                                              
+ We open two connections at the same time to the server:
+ 1 - Control connection: This connection will not send anything other than a pair of
+ headers and wait for the server to timeout.
+ 2 - Delay connection: This connection is created at the same time as the first one,
+     send the same headers, wait 10 seconds and send one more header
+     to the server. Wait for the server to timeout.
+                                                                              
+ If there is a time difference between timeout 1 and 2 of 10 seconds or
+ more, then we can conclude that the server is vulnerable to this attack,
+ since a connection can be kept busy on the server while it is
+ send headers every 10 seconds (configurable time).
+
+Full explanation of the method used taken from the following link:
+
 https://community.qualys.com/blogs/securitylabs/2011/07/07/identifying-slow-http-attack-vulnerabilities-on-web-applications
